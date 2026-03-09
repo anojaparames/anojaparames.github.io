@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anoja Parames — Film & Video Editor Portfolio </title>
+  <meta name="description" content="Film & Video Editor — crafting compelling narratives through the art of editing." />
+
+  <!-- Fonts: Satoshi (display) + Inter (body) -->
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #fafafa;
+      --text: #0d0d12;
+      --muted: #585d74;
+      --border: #e0e1e6;
+      --surface: #f0f0ee;
+      --font-d: 'Satoshi', system-ui, sans-serif;
+      --font-b: 'Inter', system-ui, sans-serif;
+      --max-w: 1200px;
+      --px: 48px;
+      --gap-sec: 140px;
+      --radius: 6px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-b);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    .w {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--px);
+    }
+
+    a.inline-link {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transition: opacity 0.2s ease;
+    }
+
+    a.inline-link:hover {
+      opacity: 0.6;
+    }
+
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 200;
+      padding: 22px var(--px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      mix-blend-mode: difference;
+      pointer-events: none;
+    }
+
+    .nav > * { pointer-events: auto; }
+
+    .nav-logo {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      font-family: var(--font-b);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      transition: opacity 0.2s;
+    }
+
+    .nav-links a:hover { opacity: 0.55; }
+
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .nav-burger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 190;
+      background: var(--bg);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 36px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .nav-drawer.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .nav-drawer a {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: 36px;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .hero {
+      padding-top: 110px;
+      padding-bottom: var(--gap-sec);
+    }
+
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-star {
+      font-size: 26px;
+      line-height: 1;
+      margin-bottom: 22px;
+      color: var(--text);
+    }
+
+    .hero-mini {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      line-height: 2;
+      letter-spacing: 0.02em;
+      color: var(--muted);
+    }
+
+    .hero-hr {
+      width: 38px;
+      height: 1px;
+      background: var(--border);
+      margin: 24px 0;
+      flex-shrink: 0;
+    }
+
+    .hero-name-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-name {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: clamp(80px, 13vw, 180px);
+      line-height: 0.88;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      text-align: left;
+    }
+
+    .hero-fn,
+    .hero-ln { display: block; }
+
+    .hero-vert {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 100;
+      transform-origin: left bottom;
+      transform: rotate(90deg);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .sec {
+      padding: var(--gap-sec) 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .sec-head {
+      margin-bottom: 64px;
+    }
+
+    .sec-label {
+      font-family: var(--font-b);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .body p {
+      margin-top: 16px;
+      max-width: 760px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .work-feature {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 32px;
+      align-items: start;
+      margin-bottom: 32px;
+    }
+
+    .work-feature.stacked {
+      grid-template-columns: 1fr;
+      width: 100%;
+      max-width: none;
+      gap: 16px;
+    }
+
+    .work-feature.stackedsquare {
+      grid-template-columns: 1fr;
+      max-width: 500px;
+      gap: 16px;
+      margin: 0 auto 48px;
+    }
+
+    .work-feature.big {
+      grid-template-columns: 2fr 0.9fr;
+    }
+
+    .work-feature.vertical {
+      grid-template-columns: minmax(320px, 520px) 1fr;
+      align-items: start;
+    }
+
+    .work-feature.square {
+      grid-template-columns: minmax(320px, 520px) 1fr;
+      align-items: start;
+    }
+
+    .work-feature .work-item {
+      position: relative;
+      width: 100%;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .work-item {
+      display: block;
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+      cursor: pointer;
+    }
+
+    .work-item.square {
+      aspect-ratio: 1 / 1;
+      background: transparent;
+    }
+
+    .work-item.vertical {
+      aspect-ratio: 9 / 16;
+      background: transparent;
+    }
+
+    .work-media {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      z-index: 1;
+    }
+
+    .work-item.square .work-media,
+    .work-item.vertical .work-media {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .work-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--surface);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .work-thought {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 22px;
+      border: 1px solid var(--border);
+    }
+
+    .work-thought h3 {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .work-thought p {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .work-thought ul {
+      list-style: disc;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .work-thought li {
+      margin-bottom: 8px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .info-label {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: clamp(36px, 4vw, 52px);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      position: sticky;
+      top: 100px;
+    }
+
+    .info-body p {
+      font-size: 18px;
+      line-height: 1.78;
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .info-body p:last-child { margin-bottom: 0; }
+
+    .info-body strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .comp-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3px;
+    }
+
+    .comp-card {
+      background: var(--surface);
+      padding: 40px 36px;
+      border-radius: 3px;
+    }
+
+    .comp-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .comp-title {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: 26px;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .comp-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .connect-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 72px;
+    }
+
+    .connect-heading {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: clamp(60px, 10vw, 148px);
+      letter-spacing: -0.04em;
+      line-height: 0.88;
+    }
+
+    .connect-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+    }
+
+    .connect-desc {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 380px;
+      line-height: 1.65;
+    }
+
+    .connect-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 14px;
+    }
+
+    .connect-link {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+
+    .connect-link:hover { opacity: 0.45; }
+
+    .connect-link .arr {
+      font-size: 13px;
+      opacity: 0.4;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px var(--px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .foot-name {
+      font-family: var(--font-d);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .foot-copy {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 960px) {
+      :root {
+        --px: 28px;
+        --gap-sec: 100px;
+      }
+
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+
+      .work-feature,
+      .work-feature.vertical,
+      .work-feature.square,
+      .work-feature.big {
+        grid-template-columns: 1fr;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .info-label { position: static; }
+
+      .comp-grid { grid-template-columns: 1fr; }
+
+      .connect-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+      }
+
+      .connect-links { align-items: flex-start; }
+
+      .nav-drawer { display: flex; }
+    }
+
+    @media (max-width: 580px) {
+      :root {
+        --px: 20px;
+        --gap-sec: 80px;
+      }
+
+      .hero-vert { display: none; }
+      .hero-mini { font-size: 12px; }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary navigation">
+    <a href="#" class="nav-logo">Anoja Parames</a>
+
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#info">Info</a></li>
+      <li><a href="#competencies">Competencies</a></li>
+      <li><a href="#connect">Connect</a></li>
+    </ul>
+
+    <button class="nav-burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-drawer" id="drawer" aria-hidden="true">
+    <a href="#work" onclick="closeDrawer()">Work</a>
+    <a href="#info" onclick="closeDrawer()">Info</a>
+    <a href="#competencies" onclick="closeDrawer()">Competencies</a>
+    <a href="#connect" onclick="closeDrawer()">Connect</a>
+  </div>
+
+  <header class="hero">
+    <div class="w">
+      <div class="hero-inner">
+        <div class="hero-star" aria-hidden="true">✦</div>
+
+        <p class="hero-mini">
+          I'm a<br />
+          Film &amp; Video Editor<br />
+          Based in Montréal
+        </p>
+
+        <div class="hero-hr" role="separator"></div>
+
+        <div class="hero-name-wrap">
+          <h1 class="hero-name" aria-label="Anoja Parames">
+            <span class="hero-fn">Anoja</span>
+            <span class="hero-ln">Parames</span>
+          </h1>
+        </div>
+
+        <div class="hero-hr" role="separator"></div>
+      </div>
+    </div>
+  </header>
+
+  <section id="work" class="sec">
+    <div class="w">
+      <div class="sec-head">
+        <span class="sec-label">Selected Work</span>
+        <div class="body">
+          <p>These projects demonstrate short-form social media editing, rhythm-based montage construction, and narrative pacing techniques used in modern digital media.</p>
+        </div>
+      </div>
+
+      <div class="work-feature stackedsquare">
+        <div class="work-item square">
+          <iframe
+            class="work-media"
+            src="https://player.vimeo.com/video/1170382462?badge=0&autopause=0&player_id=0&app_id=58479"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="work-feature stacked">
+        <aside class="work-thought">
+          <h3>Short-Form Trailer || <a class="inline-link" href="https://www.tiktok.com/@mydarlingparamour/video/7423619612933131525" target="_blank" rel="noopener noreferrer">TikTok</a></h3>
+          <p>Source Material: Game Changer | Music: It’s the Hard Knock Life</p>
+          <p><strong>Project Overview</strong></p>
+          <p>This short-form edit repurposes footage from Game Changer, a Dropout comedy game show where contestants compete in unpredictable games without knowing the rules in advance.</p>
+          <p>The objective was to translate the show’s chaotic humour and energy into a high-impact vertical edit suitable for social media marketing. The piece emphasizes comedic timing, rapid pacing, and visual clarity within a short runtime designed for mobile audiences.</p>
+          <p><strong>Editing Strategy</strong></p>
+          <p>To maintain engagement in a fast-scroll environment, the edit prioritizes tight pacing and rapid comedic payoff. Reaction shots, punchlines, and visual beats were selected to build momentum while preserving narrative clarity.</p>
+          <p><strong>Post-Production Workflow</strong></p>
+          <p>Footage was reviewed and organized to isolate moments with strong contestant reactions and comedic delivery. Clips were grouped by scene and narrative function, allowing for efficient iteration while refining the structure of the edit.</p>
+          <p>The project was edited in Adobe Premiere Pro, with pacing adjustments and graphics integration completed during the refinement stage to maintain narrative clarity and visual consistency.</p>
+          <p><strong>Impact</strong></p>
+          <p>The video generated strong engagement on TikTok, reaching 70.8K+ views.</p>
+          <p>The edit also received direct interaction from Dropout leadership: CEO Sam Reich liked, commented on, and reposted the video, indicating positive reception from the creators of the original show.</p>
+        </aside>
+      </div>
+
+      <div class="work-feature stacked">
+        <div class="work-item">
+          <iframe
+            class="work-media"
+            src="https://player.vimeo.com/video/1170374678?badge=0&autopause=0&player_id=0&app_id=58479"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+        <aside class="work-thought">
+          <h3>Rhythm-Based Character Montage || <a class="inline-link" href="https://www.youtube.com/watch?v=-zIih8leaMc" target="_blank" rel="noopener noreferrer">YouTube</a></h3>
+          <p>Source Material: Supernatural | Music: Another One Bites the Dust</p>
+          <p><strong>Project Overview</strong></p>
+          <p>This project is a music-driven character narrative montage highlighting the chemistry and action dynamics of the central characters from the fantasy series Supernatural.</p>
+          <p>The goal of the edit was to create a fast-paced narrative montage that captures the tone and personality of the show while emphasizing the characters’ teamwork, humour, and action-driven storytelling.</p>
+          <p><strong>Editing Strategy</strong></p>
+          <p>The song “Another One Bites the Dust” was selected to reflect the show’s long-standing use of classic rock in key narrative moments and recap sequences. Its driving bassline provides a strong rhythmic foundation for pacing the montage.</p>
+          <p>The edit was structured around the rhythm of the track, with cuts and transitions aligned to musical beats and lyrical cues. Scene selection prioritizes action moments alongside comedic character interactions to reinforce the dynamic between the characters while maintaining narrative flow.</p>
+          <p><strong>Post-Production Workflow</strong></p>
+          <p>Footage was organized into structured bins by character and scene type to streamline scene selection and support efficient iteration during editing.</p>
+          <p>The project was edited in Adobe Premiere Pro, with color adjustments and audio balancing applied to maintain visual consistency and clear sound levels across clips sourced from different episodes.</p>
+          <p><strong>Impact</strong></p>
+          <p>The video generated strong engagement on YouTube, reaching 100K+ views.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="info" class="sec">
+    <div class="w">
+      <div class="sec-head">
+        <span class="sec-label">Info</span>
+      </div>
+
+      <div class="info-grid">
+        <h2 class="info-label">About<br />Me.</h2>
+
+        <div class="info-body">
+          <p><strong>Hi, I'm Anoja</strong> — a video editor with a passion for telling stories that resonate.</p>
+          <p>I enjoy exploring how pacing, music, and shot selection can shape the way a story connects with an audience. My recent work has focused on short-form social edits and narrative montages, where I experiment with rhythm, timing, and storytelling to create engaging and creative content.</p>
+          <p>I’m excited to bring those storytelling skills into marketing and product videos, creating clear, polished content that communicates ideas effectively. I primarily edit in Adobe Premiere Pro and continue developing my craft through hands-on projects and studying professional editing techniques.</p>
+          <p>I’m drawn to projects that challenge me creatively — whether that’s a character-driven short film, a brand’s origin story, or an exciting music video. If you have a story worth telling, I’d love to help you tell it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="competencies" class="sec">
+    <div class="w">
+      <div class="sec-head">
+        <span class="sec-label">Competencies</span>
+      </div>
+
+      <div class="comp-grid">
+        <div class="comp-card">
+          <p class="comp-num">01</p>
+          <h3 class="comp-title">Narrative Editing</h3>
+          <p class="comp-desc">Shaping raw footage into stories that flow naturally and hold the viewer's attention — from the first cut to the final frame.</p>
+        </div>
+
+        <div class="comp-card">
+          <p class="comp-num">02</p>
+          <h3 class="comp-title">Colour Grading</h3>
+          <p class="comp-desc">Refining color, contrast, and exposure to maintain visual consistency and support the tone of the edit.</p>
+        </div>
+
+        <div class="comp-card">
+          <p class="comp-num">03</p>
+          <h3 class="comp-title">Sound Design</h3>
+          <p class="comp-desc">Mixing dialogue, music, and ambience to build an immersive, emotionally resonant soundscape that supports the picture.</p>
+        </div>
+
+        <div class="comp-card">
+          <p class="comp-num">04</p>
+          <h3 class="comp-title">Motion Graphics</h3>
+          <p class="comp-desc">Creating clean, purposeful titles and graphics that complement the edit rather than compete with it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="connect" class="sec">
+    <div class="w">
+      <div class="sec-head">
+        <span class="sec-label">Let's Connect</span>
+      </div>
+
+      <div class="connect-inner">
+        <h2 class="connect-heading">
+          Let's<br />Work<br />Together.
+        </h2>
+
+        <div class="connect-row">
+          <p class="connect-desc">
+            Have a project in mind? I'd love to hear about it.
+            Reach out and let's make something great.
+          </p>
+
+          <div class="connect-links">
+            <a href="mailto:anojaparames@gmail.com" class="connect-link">
+              anojaparames@gmail.com <span class="arr">↗</span>
+            </a>
+            <a href="https://vimeo.com/user255460205" class="connect-link" target="_blank" rel="noopener noreferrer">
+              Vimeo <span class="arr">↗</span>
+            </a>
+            <a href="https://www.linkedin.com/in/anoja-parames-4ab8435a/" class="connect-link" target="_blank" rel="noopener noreferrer">
+              LinkedIn <span class="arr">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="foot-name">Anoja Parames</span>
+    <span class="foot-copy">&copy; 2026 &middot; Film &amp; Video Editor</span>
+  </footer>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const drawer = document.getElementById('drawer');
+
+    burger.addEventListener('click', () => {
+      const open = burger.classList.toggle('open');
+      drawer.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      drawer.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    function closeDrawer() {
+      burger.classList.remove('open');
+      drawer.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  </script>
+</body>
+</html>
